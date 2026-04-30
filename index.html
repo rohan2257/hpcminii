@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HPC Prime Demo</title>
+</head>
+<body>
+  <h1>Prime Number Finder (HPC Demo)</h1>
+
+  <input type="number" id="num" placeholder="Enter number" />
+  <button onclick="findPrimes()">Find Primes</button>
+
+  <p id="result"></p>
+
+  <script>
+    async function findPrimes() {
+      const num = document.getElementById("num").value;
+      const res = await fetch(`/api/primes?number=${num}`);
+      const data = await res.json();
+
+      document.getElementById("result").innerText =
+        "Primes: " + data.primes.join(", ");
+    }
+  </script>
+</body>
+</html>
